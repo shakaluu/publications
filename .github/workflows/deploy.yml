@@ -2,8 +2,8 @@ name: Deploy pages
 
 on:
   workflow_dispatch:
-  release:
-    types: [published]
+  push:
+    branches: [main]
 
 permissions:
   contents: read
@@ -20,13 +20,13 @@ jobs:
     strategy:
       matrix:
         node-version: [24]
-        branch: [helm-intro]
+        branch: [helm-intro, test-branch]
 
     steps:
       - name: checkout helm-intro
         uses: actions/checkout@v4
         with:
-          ref: release/${{ matrix.branch }}
+          ref: ${{ matrix.branch }}
 
       - uses: actions/setup-node@v4
         with:
