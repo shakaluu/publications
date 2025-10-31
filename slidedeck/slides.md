@@ -6,6 +6,7 @@ info: |
   A slidedeck for CNCF Meetup Innsbruck on Oct. 30th, 2025
   by Bernhard Bucher and Michael Wolf
 # apply UnoCSS classes to the current slide
+download: true
 class: text-left
 # https://sli.dev/features/drawing
 drawings:
