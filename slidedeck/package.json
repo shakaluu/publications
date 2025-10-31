@@ -1,5 +1,5 @@
 {
-  "name": "helm-intro",
+  "name": "test",
   "type": "module",
   "private": true,
   "scripts": {
@@ -11,13 +11,7 @@
     "@slidev/cli": "^52.6.0",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
-    "i": "^0.3.7",
     "node": "^25.1.0",
-    "pnpm": "^10.20.0",
     "vue": "^3.5.22"
-  },
-  "devDependencies": {
-    "prettier": "^3.6.2",
-    "prettier-plugin-slidev": "^1.0.5"
   }
 }

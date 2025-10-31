@@ -1,655 +1,637 @@
 ---
-theme: default
-title: Helm
+# try also 'default' to start simple
+theme: seriph
+# random image from a curated Unsplash collection by Anthony
+# like them? see https://unsplash.com/collections/94734566/slidev
+background: https://cover.sli.dev
+# some information about your slides (markdown enabled)
+title: Welcome to Slidev
 info: |
-  ## Helm
-  A presentation for CNCF Meetup Innsbruck
-  by Bernhard Bucher and Michael Wolf
+  ## Slidev Starter Template
+  Presentation slides for developers.
+
+  Learn more at [Sli.dev](https://sli.dev)
 # apply UnoCSS classes to the current slide
-class: text-left
+class: text-center
 # https://sli.dev/features/drawing
 drawings:
   persist: false
 # slide transition: https://sli.dev/guide/animations.html#slide-transitions
 transition: slide-left
 # enable MDC Syntax: https://sli.dev/features/mdc
-mdc: false
+mdc: true
+# duration of the presentation
+duration: 35min
 ---
 
-# Helm
+# Welcome to Slidev
 
-The package manager for Kubernetes
+Presentation slides for developers
+
+<div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
+  Press Space for next page <carbon:arrow-right />
+</div>
 
 <div class="abs-br m-6 text-xl">
-  <a href="https://miro.com/app/board/uXjVJ3pkFaw=/" target="_blank" class="slidev-icon-btn">
-    <img src="/miro.png" class="w-6">
-  </a>
-  <a href="https://github.com/shakaluu/publications/tree/helm-intro" target="_blank" class="slidev-icon-btn">
+  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="slidev-icon-btn">
+    <carbon:edit />
+  </button>
+  <a href="https://github.com/slidevjs/slidev" target="_blank" class="slidev-icon-btn">
     <carbon:logo-github />
   </a>
 </div>
 
+<!--
+The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
+-->
+
+---
+transition: fade-out
 ---
 
-# What is Helm?
+# What is Slidev?
 
-Helm is a graduated project in the CNCF and is maintained by the Helm community  
-It is a package manager for Kubernetes
+Slidev is a slides maker and presenter designed for developers, consist of the following features
 
-<div class="abs-tr m-6 w-10">
-  <img src="/helm-logo.png">
-</div>
-
-<v-click>
-
-## Advantages
-
+- 📝 **Text-based** - focus on the content with Markdown, and then style them later
+- 🎨 **Themable** - themes can be shared and re-used as npm packages
+- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
+- 🤹 **Interactive** - embed Vue components to enhance your expressions
+- 🎥 **Recording** - built-in recording and camera view
+- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
+- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
+<br>
 <br>
 
-- 📝 **Manage complexity** - Helm Charts describe most complex apps, repeatable installation
-
-</v-click>
-
-<v-clicks>
-
-- 🛠 **Easy Updates** - in-place upgrades and custom hooks
-- 📤 **Simple Sharing** - easy to version, share, and host on public or private servers
-- 🔥 **Rollbacks** - helm rollback to roll back to an older version of a release with ease
-
-</v-clicks>
-
-<v-click>
-
-## Disadvantages
-
-- well...
-
-</v-click>
+Read more about [Why Slidev?](https://sli.dev/guide/why)
 
 <!--
-Package manager with format of Helm Charts - compared to .deb or .rpm in parts of the Linux world.
+You can have `style` tag in markdown to override the style for the current page.
+Learn more: https://sli.dev/features/slide-scope-style
+-->
 
-Differences between "real" Package Managers and Helm.
-- automated dependency resolution
-- Highly customizable during install - unlike other package managers, maybe if you use Gentoo and it's Portage.
+<style>
+h1 {
+  background-color: #2B90B6;
+  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
+<!--
+Here is another comment.
 -->
 
 ---
 transition: slide-up
+level: 2
 ---
 
-# Helm Charts
+# Navigation
 
-contain a collection of files defining a set of K8s resources to deploy a specific application
+Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
 
-```yaml {none|2|2,5|2,5,9-10|all}
-wordpress/
-  Chart.yaml          # A YAML file containing information about the chart
-  LICENSE             # OPTIONAL: A plain text file containing the license for the chart
-  README.md           # OPTIONAL: A human-readable README file
-  values.yaml         # The default configuration values for this chart
-  values.schema.json  # OPTIONAL: A JSON Schema for imposing a structure on the values.yaml file
-  charts/             # A directory containing any charts upon which this chart depends.
-  crds/               # Custom Resource Definitions
-  templates/          # A directory of templates that, when combined with values,
-                      # will generate valid Kubernetes manifest files.
-```
+## Keyboard Shortcuts
 
-<br>
+|                                                     |                             |
+| --------------------------------------------------- | --------------------------- |
+| <kbd>right</kbd> / <kbd>space</kbd>                 | next animation or slide     |
+| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
+| <kbd>up</kbd>                                       | previous slide              |
+| <kbd>down</kbd>                                     | next slide                  |
 
-<div v-after>
-
-## Templates and Values
-
-<br>
-
-- 📝 YAML based
-- 🐹 Go Templating Language
-- 🌻 sprig library
-
-</div>
+<!-- https://sli.dev/guide/animations.html#click-animation -->
+<img
+  v-click
+  class="absolute -bottom-9 -left-7 w-80 opacity-50"
+  src="https://sli.dev/assets/arrow-bottom-left.svg"
+  alt=""
+/>
+<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
 
 ---
-
-# Let's have a look
-
-```
-/templates/service.yaml
-```
-
-````md magic-move
-```yaml {*|5|8|*}{lines:true}
-# prettier-ignore
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ default (printf "%s-svc" .Release.Name | trunc 63 | trimSuffix "-") .Values.service.name }}
-spec:
-  selector:
-    app: {{ .Chart.Name | lower }}
-  ports:
-    - port: {{ .Values.service.port | default 80 }}
-```
-
-```yaml {*}{lines:true}
-# prettier-ignore
-apiVersion: v1
-kind: Service
-metadata:
-  name: myapp
-spec:
-  selector:
-    app: mychart
-  ports:
-    - port: 8080
-```
-````
-
-```
-/values.yaml
-```
-
-```yaml {*}{lines:true}
-service:
-  name: myapp
-  port: 8080
-```
-
-<br>
-<div v-after>
-
-```bash {*}
-$ helm template my-release . -f values.yaml
-```
-
-</div>
-
+layout: two-cols
+layoutClass: gap-16
 ---
 
-# Dependency Management
+# Table of contents
 
-```
-/Chart.yaml
-```
+You can use the `Toc` component to generate a table of contents for your slides:
 
-```yaml {*}{lines:true}
-apiVersion: v2
-name: mychart
-version: 1.0.0
-
-dependencies:
-  - name: nginx
-    version: "1.2.3"
-    repository: "https://example.com/charts"
-  - name: redis
-    version: "3.2.1"
-    repository: "https://another.example.com/charts"
+```html
+<Toc minDepth="1" maxDepth="1" />
 ```
 
-<br>
+The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
 
-<v-click>
-```bash {*}
-$ helm dependency update
-```
+::right::
 
-- 📥 Resolves the dependency and downloads the chart(s)
-
-</v-click>
-
-<v-clicks>
-
-- 💼 Stored in the `/charts` directory as .tgz archive
-
-</v-clicks>
+<Toc text-sm minDepth="1" maxDepth="2" />
 
 ---
-
-# Subcharts and Global Values
-
-The `values.yaml` file has specific sections for values considered global and additionally specific to subcharts.
-
-<v-clicks>
-
-- 💭 A subchart is considered "stand-alone", it can never explicitly depend on its parent chart
-- 🚧 For that reason, a subchart cannot access the values of its parent or siblings
-- ✏️ A parent chart can override values for subcharts
-- 🌍 Helm has a concept of global values that can be accessed by all charts
-
-</v-clicks>
-
-<br>
-
-<v-click>
-
-````md magic-move
-```yaml {*}{lines:true}
-apiVersion: v2
-name: mychart
-version: 1.0.0
-
-dependencies:
-  - name: nginx
-    version: "1.2.3"
-    repository: "https://example.com/charts"
-  - name: redis
-    version: "3.2.1"
-    repository: "https://another.example.com/charts"
-```
-
-```yaml {*}{lines:true}
-global:
-  env: dev
-service:
-  name: myapp
-  port: 8080
-nginx:
-  enabled: false
-redis:
-  test: true
-```
-````
-
-</v-click>
-
+layout: image-right
+image: https://cover.sli.dev
 ---
 
-# Named Templates
+# Code
 
-A named template (sometimes called a partial or a subtemplate) is simply a template defined inside of a file, and given a name
+Use code snippets and get the highlighting directly, and even types hover!
 
-```yaml [/templates/_helpers.tpl] {*}{lines:true}
-{{- define "mychart.app" -}}
-app_name: {{ .Chart.Name }}
-app_version: "{{ .Chart.Version }}"
-{{- end -}}
+```ts [filename-example.ts] {all|4|6|6-7|9|all} twoslash
+// TwoSlash enables TypeScript hover information
+// and errors in markdown code blocks
+// More at https://shiki.style/packages/twoslash
+import { computed, ref } from 'vue'
+
+const count = ref(0)
+const doubled = computed(() => count.value * 2)
+
+doubled.value = 2
 ```
 
-<br>
+<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="342" color="#953" width="2" arrowSize="1" />
 
-<v-click>
+<!-- This allow you to embed external code blocks -->
+<<< @/snippets/external.ts#snippet
 
-````md magic-move
-```yaml {*|6,9}{lines:true}
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Chart.Name }}-configmap
-  labels:
-{{ include "mychart.app" . | indent 4 }}
-data:
-  myvalue: "Hello World"
-{{ include "mychart.app" . | indent 2 }}
-```
+<!-- Footer -->
 
-```yaml {*}{lines:true}
-# Source: mychart/templates/configmap.yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mychart-configmap
-  labels:
-    app_name: mychart
-    app_version: "1.0.0"
-data:
-  app_name: mychart
-  app_version: "1.0.0"
-```
-````
+[Learn more](https://sli.dev/features/line-highlighting)
 
-</v-click>
+<!-- Inline style -->
+<style>
+.footnotes-sep {
+  @apply mt-5 opacity-10;
+}
+.footnotes {
+  @apply text-sm opacity-75;
+}
+.footnote-backref {
+  display: none;
+}
+</style>
+
+<!--
+Notes can also sync with clicks
+
+[click] This will be highlighted after the first click
+
+[click] Highlighted with `count = ref(0)`
+
+[click:3] Last click (skip two clicks)
+-->
 
 ---
-
-# Using ArgoCD with Helm (our Approach)
-
-## GitOps State Repository
-
-<v-clicks>
-
-- ✂️ Parent chart to decouple state from application chart
-- 🔧 Additional configuration for notifications, owning team, etc.
-
-```
-path/in/gitops-state/*/Chart.yaml
-path/in/gitops-state/*/config.json
-```
-
-```yaml {*}{lines:true}
-apiVersion: v2
-name: my-fancy-application
-version: 1.0.0
-
-dependencies:
-  - name: my-fancy-application
-    repository: oci://registry/my-domain
-    version: 2.3.4
-```
-
-</v-clicks>
-
+level: 2
 ---
 
-# Using ArgoCD with Helm (our Approach)
+# Shiki Magic Move
 
-## ArgoCD Applicationset
+Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
 
-<v-clicks>
+Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
 
-🔎 Git Generator discovering parent chart(s) folder
-
-```yaml {*}{lines:true}
-generators:
-  - git:
-      files:
-        - path: "path/in/gitops-state/*/config.json"
-      repoURL: my-repo
-      revision: main
+````md magic-move {lines: true}
+```ts {*|2|*}
+// step 1
+const author = reactive({
+  name: 'John Doe',
+  books: [
+    'Vue 2 - Advanced Guide',
+    'Vue 3 - Basic Guide',
+    'Vue 4 - The Mystery'
+  ]
+})
 ```
 
-</v-clicks>
-
----
-
-## ArgoCD Applicationset
-
-<v-clicks>
-
-🚀 Automatic creation (based on template) of ArgoCD application using Helm chart
-
-```yaml {*}{lines:true}
-# prettier-ignore
-source:
-  repoURL: my-repo
-  targetRevision: main
-  path: {{ .path.path }}
-  helm:
-    releaseName: "my-fancy-application"
-    ignoreMissingValueFiles: true
-    valueFiles:
-      - "additional-values.yaml"
-```
-
-</v-clicks>
-
----
-
-# Using Helm CLI VS Helm in ArgoCD
-
-## Different Approaches of Applying
-
-- `helm install` renders and verifies chart and applies it through K8s API
-- ArgoCD runs `helm template` and applies the result with `kubectl apply`
-
-## Keep in Mind When Using ArgoCD
-
-- No Helm release handling in ArgoCD
-- Template result is not tested for valid resources before applying
-- Duplicate resources possible (last rendered will be applied)
-- [Helm hooks](https://argo-cd.readthedocs.io/en/stable/user-guide/helm/#helm-hooks) are mapped to ArgoCD hooks
-
----
-
-# Be Type Aware
-
-## Integer Example
-
-```
-/values.yaml
-```
-
-```yaml {*}{lines:true}
-service:
-  port: 8080
-  targetPort: 8080
-```
-
-```
-/templates/deployment.yaml
-```
-
-```yaml {*}{lines:true}
-# prettier-ignore
-ports:
-  - port: "{{ .Values.service.port }}"
-    targetPort: {{ .Values.service.targetPort }}
-```
-
----
-
-# Be Type Aware
-
-## Env Var Example
-
-```
-/values.yaml
-```
-
-```yaml {*}{lines:true}
-sayHello: true
-```
-
-```
-/templates/deployment.yaml
-```
-
-```yaml {*}{lines:true}
-containers:
-  - name: hello
-    image: "hello"
-    env:
-      - name: SAY_HELLO
-        value: "{{ .Values.sayHello }}"
-```
-
----
-
-# Summary of Recommendations
-
-## Validation of Values
-
-- Be type aware
-- Use conversion functions
-- Implement schema for values
-- Validate values with functions and return errors
-
-## Test Helm Charts
-
-- Render chart (helm template) and verify results
-- Dry-run chart installation (helm install –dry-run)
-- Not supported by ArgoCD: Implement chart tests and run them after installing (helm test)
-- Automate!
-
----
-
-# Problems with Helm
-
-Till now it was a salespitch - let's explore the dark side...
-
-<v-click>
-
-- Public Charts on `artifacthub.io` can be tricky in various ways
-
-```bash
-$ helm search hub redis -o yaml | yq '. | length'
-174
-```
-
-</v-click>
-<br>
-<v-click>
-
-- Whitespaces and Indentation errors - no debugging tool
-
-```bash
-{{-, -}}, indent, nindent, Tabs/Spaces
-```
-
-</v-click>
-<br>
-<v-click>
-
-- Puzzling Error messages
-
-```bash
-$ helm template . -f values.dev.yaml > results.yaml
-Error: failed to parse values.dev.yaml: error converting YAML to JSON: yaml: line 15: did not find expected key
-```
-
-</v-click>
-
-<v-click>
-
-```yaml {*}{lines:true,startLine:15}
-# The init-container is for local development only! In DEV/HARD/PROD a migration-job is used!
-```
-
-</v-click>
-
----
-
-# Problems are here to be solved...
-
-for some of the issues there might be a fix
-
-<v-click>
-
-- Check for Helm Charts not only on Artifacthub
-
-```bash
-$ helm repo add <repo-name> https://helm.redis.io/
-```
-
-</v-click>
-<br>
-<v-click>
-
-- `helm template` and the `--debug` flag are your friends - a long distance, see once in a year friends
-
-```bash
-$ helm template ./mychart --debug
-```
-
-</v-click>
-
----
-
-# What's next...
-
-... for the Helm project
-
-<br>
-
-### 🎉 Helm 4.0 November Release 🎉
-
-<br>
-
-<v-clicks>
-
-- 🔑 Enhanced OCI Support - install by digest  
-  `helm install myapp oci://registry.example.com/charts/app@sha256:abc123`
-- 🚀 Performance - Faster dependency resolution and new content-based chart caching
-- 📢 Error Messages - Clearer, more helpful error output.
-- 🔒 Registry Authentication - Better OAuth and token support for private registries.
-
-</v-clicks>
-
----
-
-# What's next...
-
-... for the Helm project
-
-<br>
-
-### KYAML with Kubernetes 1.34
-
-<br>
-
-<v-clicks>
-
-- 🎯 Explicitness - The type of every value is obvious, avoiding ambiguity issues
-- 🚫 Error Reduction - Avoids common parsing traps in YAML
-- 🔄 Version Control Friendly - Cleaner diffs, fewer merge conflicts
-- 🔧 Tool Compatibility - Fully compatible with existing YAML processing tools
-- 💡 Better IDE Support - JSON-like structure provides better syntax highlighting and validation
-
-</v-clicks>
-
----
-
-# YAML vs. KYAML
-
-````md magic-move
-```yaml
-replicaCount: 3
-image:
-  repository: my-app
-  tag: latest
-  pullPolicy: IfNotPresent
-service:
-  type: ClusterIP
-  port: 80
-env:
-  - name: LOG_LEVEL
-    value: debug
-  - name: FEATURE_FLAG
-    value: true
-resources:
-  limits:
-    cpu: "500m"
-    memory: "256Mi"
-  requests:
-    cpu: "250m"
-    memory: "128Mi"
-```
-
-```yaml
-# prettier-ignore
-{
-  replicaCount: 3,
-  image: { repository: "my-app", tag: "latest", pullPolicy: "IfNotPresent" },
-  service: { type: "ClusterIP", port: 80 },
-  env: [
-    { name: "LOG_LEVEL,", value: "debug" },
-    { name: "FEATURE_FLAG,", value: true },
-  ],
-  resources: {
-    limits: { cpu: "500m", memory: "256Mi" },
-    requests: { cpu: "250m", memory: "128Mi" },
-  },
+```ts {*|1-2|3-4|3-4,8}
+// step 2
+export default {
+  data() {
+    return {
+      author: {
+        name: 'John Doe',
+        books: [
+          'Vue 2 - Advanced Guide',
+          'Vue 3 - Basic Guide',
+          'Vue 4 - The Mystery'
+        ]
+      }
+    }
+  }
 }
 ```
+
+```ts
+// step 3
+export default {
+  data: () => ({
+    author: {
+      name: 'John Doe',
+      books: [
+        'Vue 2 - Advanced Guide',
+        'Vue 3 - Basic Guide',
+        'Vue 4 - The Mystery'
+      ]
+    }
+  })
+}
+```
+
+Non-code blocks are ignored.
+
+```vue
+<!-- step 4 -->
+<script setup>
+const author = {
+  name: 'John Doe',
+  books: [
+    'Vue 2 - Advanced Guide',
+    'Vue 3 - Basic Guide',
+    'Vue 4 - The Mystery'
+  ]
+}
+</script>
+```
 ````
+
+---
+
+# Components
+
+<div grid="~ cols-2 gap-4">
+<div>
+
+You can use Vue components directly inside your slides.
+
+We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
+
+```html
+<Counter :count="10" />
+```
+
+<!-- ./components/Counter.vue -->
+<Counter :count="10" m="t-4" />
+
+Check out [the guides](https://sli.dev/builtin/components.html) for more.
+
+</div>
+<div>
+
+```html
+<Tweet id="1390115482657726468" />
+```
+
+<Tweet id="1390115482657726468" scale="0.65" />
+
+</div>
+</div>
+
+<!--
+Presenter note with **bold**, *italic*, and ~~striked~~ text.
+
+Also, HTML elements are valid:
+<div class="flex w-full">
+  <span style="flex-grow: 1;">Left content</span>
+  <span>Right content</span>
+</div>
+-->
+
+---
+class: px-20
+---
+
+# Themes
+
+Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
+
+<div grid="~ cols-2 gap-2" m="t-2">
+
+```yaml
+---
+theme: default
+---
+```
+
+```yaml
+---
+theme: seriph
+---
+```
+
+<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
+
+<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
+
+</div>
+
+Read more about [How to use a theme](https://sli.dev/guide/theme-addon#use-theme) and
+check out the [Awesome Themes Gallery](https://sli.dev/resources/theme-gallery).
+
+---
+
+# Clicks Animations
+
+You can add `v-click` to elements to add a click animation.
+
+<div v-click>
+
+This shows up when you click the slide:
+
+```html
+<div v-click>This shows up when you click the slide.</div>
+```
+
+</div>
 
 <br>
 
-<div v-after class="text-center">
-KYAML, a safer, less ambiguous subset of YAML that maintains full compatibility with existing tooling while eliminating many of the most common YAML pitfalls.
+<v-click>
+
+The <span v-mark.red="3"><code>v-mark</code> directive</span>
+also allows you to add
+<span v-mark.circle.orange="4">inline marks</span>
+, powered by [Rough Notation](https://roughnotation.com/):
+
+```html
+<span v-mark.underline.orange>inline markers</span>
+```
+
+</v-click>
+
+<div mt-20 v-click>
+
+[Learn more](https://sli.dev/guide/animations#click-animation)
+
 </div>
 
 ---
-layout: end
+
+# Motions
+
+Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
+
+```html
+<div
+  v-motion
+  :initial="{ x: -80 }"
+  :enter="{ x: 0 }"
+  :click-3="{ x: 80 }"
+  :leave="{ x: 1000 }"
+>
+  Slidev
+</div>
+```
+
+<div class="w-60 relative">
+  <div class="relative w-40 h-40">
+    <img
+      v-motion
+      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
+      :enter="final"
+      class="absolute inset-0"
+      src="https://sli.dev/logo-square.png"
+      alt=""
+    />
+    <img
+      v-motion
+      :initial="{ y: 500, x: -100, scale: 2 }"
+      :enter="final"
+      class="absolute inset-0"
+      src="https://sli.dev/logo-circle.png"
+      alt=""
+    />
+    <img
+      v-motion
+      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
+      :enter="final"
+      class="absolute inset-0"
+      src="https://sli.dev/logo-triangle.png"
+      alt=""
+    />
+  </div>
+
+  <div
+    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
+    v-motion
+    :initial="{ x: -80, opacity: 0}"
+    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
+    Slidev
+  </div>
+</div>
+
+<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
+<script setup lang="ts">
+const final = {
+  x: 0,
+  y: 0,
+  rotate: 0,
+  scale: 1,
+  transition: {
+    type: 'spring',
+    damping: 10,
+    stiffness: 20,
+    mass: 2
+  }
+}
+</script>
+
+<div
+  v-motion
+  :initial="{ x:35, y: 30, opacity: 0}"
+  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
+
+[Learn more](https://sli.dev/guide/animations.html#motion)
+
+</div>
+
 ---
 
-# Thank You!
+# LaTeX
 
-<div class="abs-br m-6 text-xl">
-  <a href="https://miro.com/app/board/uXjVJ3pkFaw=/" target="_blank" class="slidev-icon-btn">
-    <img src="/miro.png" class="w-6">
-  </a>
-  <a href="https://github.com/shakaluu/publications/tree/helm-intro" target="_blank" class="slidev-icon-btn">
-    <carbon:logo-github />
-  </a>
+LaTeX is supported out-of-box. Powered by [KaTeX](https://katex.org/).
+
+<div h-3 />
+
+Inline $\sqrt{3x-1}+(1+x)^2$
+
+Block
+$$ {1|3|all}
+\begin{aligned}
+\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
+\nabla \cdot \vec{B} &= 0 \\
+\nabla \times \vec{E} &= -\frac{\partial\vec{B}}{\partial t} \\
+\nabla \times \vec{B} &= \mu_0\vec{J} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}
+\end{aligned}
+$$
+
+[Learn more](https://sli.dev/features/latex)
+
+---
+
+# Diagrams
+
+You can create diagrams / graphs from textual descriptions, directly in your Markdown.
+
+<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
+
+```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
+sequenceDiagram
+    Alice->John: Hello John, how are you?
+    Note over Alice,John: A typical interaction
+```
+
+```mermaid {theme: 'neutral', scale: 0.8}
+graph TD
+B[Text] --> C{Decision}
+C -->|One| D[Result 1]
+C -->|Two| E[Result 2]
+```
+
+```mermaid
+mindmap
+  root((mindmap))
+    Origins
+      Long history
+      ::icon(fa fa-book)
+      Popularisation
+        British popular psychology author Tony Buzan
+    Research
+      On effectiveness<br/>and features
+      On Automatic creation
+        Uses
+            Creative techniques
+            Strategic planning
+            Argument mapping
+    Tools
+      Pen and paper
+      Mermaid
+```
+
+```plantuml {scale: 0.7}
+@startuml
+
+package "Some Group" {
+  HTTP - [First Component]
+  [Another Component]
+}
+
+node "Other Groups" {
+  FTP - [Second Component]
+  [First Component] --> FTP
+}
+
+cloud {
+  [Example 1]
+}
+
+database "MySql" {
+  folder "This is my folder" {
+    [Folder 3]
+  }
+  frame "Foo" {
+    [Frame 4]
+  }
+}
+
+[Another Component] --> [Example 1]
+[Example 1] --> [Folder 3]
+[Folder 3] --> [Frame 4]
+
+@enduml
+```
+
 </div>
 
-<div class="abs-bl m-6 text-xs text-left">
-<div>
-  <carbon:logo-slack />&nbsp;
-  <a href="https://cloud-native.slack.com/archives/D08QGRD9Z16" target="_blank">Bernhard Bucher</a>
-</div>
-<div>
-  <carbon:logo-slack />&nbsp;
-  <a href="https://cloud-native.slack.com/archives/D09QFSQ1M9N" target="_blank">Michael Wolf</a>
-</div>
-</div>
+Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
+
+---
+foo: bar
+dragPos:
+  square: 691,32,167,_,-16
+---
+
+# Draggable Elements
+
+Double-click on the draggable elements to edit their positions.
+
+<br>
+
+###### Directive Usage
+
+```md
+<img v-drag="'square'" src="https://sli.dev/logo.png">
+```
+
+<br>
+
+###### Component Usage
+
+```md
+<v-drag text-3xl>
+  <div class="i-carbon:arrow-up" />
+  Use the `v-drag` component to have a draggable container!
+</v-drag>
+```
+
+<v-drag pos="663,206,261,_,-15">
+  <div text-center text-3xl border border-main rounded>
+    Double-click me!
+  </div>
+</v-drag>
+
+<img v-drag="'square'" src="https://sli.dev/logo.png">
+
+###### Draggable Arrow
+
+```md
+<v-drag-arrow two-way />
+```
+
+<v-drag-arrow pos="67,452,253,46" two-way op70 />
+
+---
+src: ./pages/imported-slides.md
+hide: false
+---
+
+---
+
+# Monaco Editor
+
+Slidev provides built-in Monaco Editor support.
+
+Add `{monaco}` to the code block to turn it into an editor:
+
+```ts {monaco}
+import { ref } from 'vue'
+import { emptyArray } from './external'
+
+const arr = ref(emptyArray(10))
+```
+
+Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
+
+```ts {monaco-run}
+import { version } from 'vue'
+import { emptyArray, sayHello } from './external'
+
+sayHello()
+console.log(`vue ${version}`)
+console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
+```
+
+---
+layout: center
+class: text-center
+---
+
+# Learn More
+
+[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
+
+<PoweredBySlidev mt-10 />

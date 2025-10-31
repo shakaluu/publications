@@ -3,7 +3,7 @@ name: Deploy pages
 on:
   workflow_dispatch:
   push:
-    branches: [helm-intro]
+    branches: [test-branch]
 
 permissions:
   contents: read
@@ -47,7 +47,7 @@ jobs:
         working-directory: slidedeck
 
       - name: Build
-        run: pnpm build --base /${{github.event.repository.name}}/helm-intro --out dist/helm-intro/
+        run: pnpm build --base /${{github.event.repository.name}}/test-branch --out dist/test-branch/
         working-directory: slidedeck
 
       - name: Setup Pages
